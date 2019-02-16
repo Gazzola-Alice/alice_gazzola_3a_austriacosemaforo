@@ -21,6 +21,7 @@ pinMode(ledrossodue,OUTPUT);
 pinMode(ledgiallodue,OUTPUT);
 Serial.begin(9600);
 Serial.println("seriale attiva");
+interrompi();
 chiedogiallo();
 chiedolamp();
 chiedonlampeggi();
@@ -62,7 +63,14 @@ tempo= Serial.readString().toInt();
   t= ((tempo-numero)/4);
   errore();
     }}
-
+void interrompi(){
+   digitalWrite(ledgiallo,LOW);
+  digitalWrite(ledverde,LOW);
+  digitalWrite(ledrosso,LOW);
+   digitalWrite(ledgiallodue,LOW);
+  digitalWrite(ledverdedue,LOW);
+  digitalWrite(ledrossodue,LOW);
+  }
 void errore(){
   if (tempo<numero+(lampeggio*nl))
   {
@@ -200,10 +208,13 @@ void mysemaforo() {
   
 fasequattro();
  fasecinque(); 
+ setup();
  
 }
 void loop() {
  
  mysemaforo();
+ 
+
  
 }
